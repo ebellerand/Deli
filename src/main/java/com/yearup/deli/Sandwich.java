@@ -3,19 +3,20 @@ package com.yearup.deli;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sandwich {
+public abstract class Sandwich extends Product implements IPrice{
     private String size;
     private String bread;
     private List<String> toppings;
     private List<String> sauces;
     private boolean toasted;
 
-    public Sandwich(String size, String bread) {
+    public Sandwich(String type, String size, String bread, List<String> toppings, List<String> sauces, boolean toasted) {
+        super(type);
         this.size = size;
         this.bread = bread;
-        toppings = new ArrayList<>();
-        sauces = new ArrayList<>();
-        toasted = false;
+        this.toppings = new ArrayList<>();
+        this.sauces = new ArrayList<>();
+        this.toasted = false;
     }
 
     public String getSize() {
@@ -39,6 +40,11 @@ public class Sandwich {
     }
 
     private static void addSandwich() {
-
+        System.out.println("Select your bread: ");
+        System.out.println("1) White");
+        System.out.println("2) Wheat");
+        System.out.println("3) Rey");
+        System.out.println("4) Wrap");
+        int breadChoice;
     }
 }
