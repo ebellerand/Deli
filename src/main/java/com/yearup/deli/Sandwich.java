@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich extends Product implements IPrice {
-    private String size;
-    private String bread;
-    private List<String> toppings;
+    private int size;
+    private String breadType;
+    private List<Topping> toppings;
     private List<String> sauces;
     private boolean toasted;
 
-    public Sandwich(String type, String size, String bread, boolean toasted) {
+    public Sandwich(String type, int size, String breadType, boolean toasted) {
         super(type);
         this.size = size;
-        this.bread = bread;
+        this.breadType = bread;
         this.toppings = new ArrayList<>();
         this.sauces = new ArrayList<>();
         this.toasted = toasted;
     }
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
     public String getBread() {
-        return bread;
+        return breadType;
     }
 
-    public List<String> getToppings() {
+    public List<Topping> getToppings() {
         return toppings;
     }
 
