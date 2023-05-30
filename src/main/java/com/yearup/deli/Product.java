@@ -4,9 +4,8 @@ public abstract class Product implements IPrice {
     private String type;
     private double price;
 
-    public Product(String type, double price) {
+    public Product(String type) {
         this.type = type;
-        this.price = price;
     }
 
     public String getType() {
