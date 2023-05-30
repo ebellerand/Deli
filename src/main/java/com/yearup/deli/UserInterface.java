@@ -95,12 +95,16 @@ public class UserInterface {
         List<Topping> regularToppingsList = new ArrayList<>();
         String[] regularToppingsArray = regularToppingsInput.split(",");
 
-        for (Topping topping : regularToppingsArray) {
-            regularToppingsList.add(topping.trim());
+        for (String topping : regularToppingsArray) {
+            Topping toppingObject = new Topping(topping.trim());
+            regularToppingsList.add(toppingObject);
         }
 
-        Sandwich sandwich = new Sandwich() {
-        }
+        System.out.println("Please select your meat. The options are steak,  ");
+        
+        Sandwich sandwich = new Sandwich( "sandwich", size, breadType, true);
+
+
 
 
 
