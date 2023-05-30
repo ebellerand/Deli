@@ -3,7 +3,7 @@ package com.yearup.deli;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Sandwich extends Product implements IPrice {
+public class Sandwich extends Product implements IPrice {
     private String size;
     private String bread;
     private List<String> toppings;
