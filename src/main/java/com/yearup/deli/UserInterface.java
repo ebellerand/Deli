@@ -101,7 +101,7 @@ public class UserInterface {
         }
 
         System.out.println("Please select your meat. The options are steak,  ");
-        
+
         Sandwich sandwich = new Sandwich( "sandwich", size, breadType, true);
 
 
