@@ -1,12 +1,15 @@
 package com.yearup.deli;
 
 public class Topping extends Product implements IPrice{
-    public Topping(String type) {
+    int sandwichSize;
+
+    public Topping(String type, int sandwichSize, Sandwich sandwich) {
         super(type);
+        this.sandwichSize = sandwich.getSandwichSize();
     }
+
     @Override
     public double getPrice() {
-        double price = 0.0;
         return price;
     }
 }
