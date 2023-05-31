@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich extends Product implements IPrice {
-    private int size;
+    int sandwichSize;
     private String breadType;
     private List<Topping> toppings;
     private List<String> sauces;
@@ -13,19 +13,19 @@ public class Sandwich extends Product implements IPrice {
 
     public Sandwich(String type, int size, String breadType, boolean toasted) {
         super(type);
-        this.size = size;
+        this.sandwichSize = size;
         this.breadType = breadType;
-        this.toppings = toppings;
+        this.toppings = new ArrayList<>();
         this.sauces = new ArrayList<>();
         this.toasted = toasted;
 
     }
 
-    public int getSize() {
-        return size;
+    public int getSandwichSize() {
+        return sandwichSize;
     }
 
-    public String getBread() {
+    public String getBreadType() {
         return breadType;
     }
 
@@ -47,5 +47,9 @@ public class Sandwich extends Product implements IPrice {
 
     public void addSauce(String sauce) {
         sauces.add(sauce);
+    }
+
+    public void setToasted(boolean toasted) {
+        this.toasted = toasted;
     }
 }

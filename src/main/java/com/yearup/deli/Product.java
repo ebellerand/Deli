@@ -2,10 +2,11 @@ package com.yearup.deli;
 
 public abstract class Product implements IPrice {
     private String type;
-    private double price;
+    double price;
 
     public Product(String type) {
         this.type = type;
+        this.price = price;
     }
 
     public String getType() {

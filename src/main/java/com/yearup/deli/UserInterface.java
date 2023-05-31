@@ -19,7 +19,7 @@ public class UserInterface {
                 return;
 
             case 1:
-                //new order
+                orderScreen();
 
             default:
                 System.out.println("Invalid selection. ");
@@ -62,7 +62,7 @@ public class UserInterface {
 
         switch (command) {
             case 1:
-                //addSandwich()
+                addSandwich();
                 break;
 
             case 2:
@@ -83,12 +83,24 @@ public class UserInterface {
     }
 
     public void addSandwich() {
+        scanner.nextLine();
         System.out.println("Select your bread. White, wheat, rye or wrap: ");
         String breadType = scanner.nextLine();
+        scanner.nextLine();
         System.out.println("-----------------------------------------------");
         System.out.println("Select your sandwich size, 4,8 or 12: ");
         int size = scanner.nextInt();
         scanner.nextLine();
+        Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
+        sandwich.sandwichSize = size;
+        System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
+
+        System.out.println("Please select your cheese. The options are American, provolone, cheddar, and Swiss:  ");
+        String cheeseString = scanner.nextLine();
+        Cheese cheese = new Cheese(cheeseString, size, sandwich);
+        sandwich.addTopping(cheese);
+        System.out.println(cheese.getPrice());
+
         System.out.println("Select your Regular toppings. The options are lettuce, peppers, onions, tomatoes, jalapenos, cucumbers, pickles, guacamole, mushrooms. ");
         System.out.println("Please enter your selection with commas in between Regular Toppings: ");
         String regularToppingsInput = scanner.nextLine();
@@ -96,13 +108,16 @@ public class UserInterface {
         String[] regularToppingsArray = regularToppingsInput.split(",");
 
         for (String topping : regularToppingsArray) {
-            Topping toppingObject = new Topping(topping.trim());
+
+            Topping toppingObject = new Regular(topping.trim(), size, sandwich);
             regularToppingsList.add(toppingObject);
         }
 
-        System.out.println("Please select your meat. The options are steak,  ");
+        System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
 
-        Sandwich sandwich = new Sandwich( "sandwich", size, breadType, true);
+
+        //Cheese cheese = new Cheese("American", size, sandwich);
+       // sandwich.addTopping(cheese);
 
 
 
