@@ -52,4 +52,5 @@ public class Sandwich extends Product implements IPrice {
     public void setToasted(boolean toasted) {
         this.toasted = toasted;
     }
+    
 }
