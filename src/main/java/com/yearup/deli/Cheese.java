@@ -1,14 +1,16 @@
 package com.yearup.deli;
 
-public class Cheese extends Topping{
-    private boolean extraOrNot;
+public class Cheese extends Topping {
+    private boolean extra;
+
     public Cheese(String type, int sandwichSize, Sandwich sandwich) {
         super(type, sandwichSize, sandwich);
-        this.extraOrNot = false;
+        this.extra = false;
         this.sandwichSize = sandwich.getSandwichSize();
     }
+
     @Override
-    public double getPrice(){
+    public double getPrice() {
         double price = 0.0;
         switch (sandwichSize) {
             case 4:
@@ -25,15 +27,36 @@ public class Cheese extends Topping{
             default:
                 System.out.println("Invalid sandwich price. ");
 
-        }  return price;
+        }
+        if (extra) {
+            price += calculateExtraCheesePrice();
 
     }
+    return price;
+}
 
     public boolean isExtraOrNot() {
-        return extraOrNot;
+        return extra;
     }
 
-    public void setExtraOrNot(boolean extraOrNot) {
-        this.extraOrNot = extraOrNot;
+    public void setExtra(boolean extra) {
+        this.extra = extra;
+    }
+
+    private double calculateExtraCheesePrice(){
+        double extraCheesePrice = 0.0;
+        switch (sandwichSize) {
+            case 4:
+                extraCheesePrice = .30;
+            break;
+            case 8:
+                extraCheesePrice = .60;
+            break;
+            case 12:
+                extraCheesePrice += .90;
+            break;
+            default:
+                System.out.println("Invalid entry. ");
+        } return extraCheesePrice;
     }
 }
