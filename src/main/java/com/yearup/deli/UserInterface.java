@@ -139,10 +139,5 @@ public class UserInterface {
         //Cheese cheese = new Cheese("American", size, sandwich);
        // sandwich.addTopping(cheese);
 
-
-
-
-
-
     }
 }
