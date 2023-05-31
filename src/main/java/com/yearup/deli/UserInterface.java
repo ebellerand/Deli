@@ -71,7 +71,7 @@ public class UserInterface {
                 break;
 
             case 3:
-                //addChips()
+                addChips();
                 break;
 
             case 4:
@@ -139,5 +139,21 @@ public class UserInterface {
         //Cheese cheese = new Cheese("American", size, sandwich);
        // sandwich.addTopping(cheese);
 
+
+    }
+    public void addChips(){
+        Scanner scanner1 = new Scanner(System.in);
+        System.out.println("Would you like to add chips with your order for $1.50 extra? (Y/N): ");
+        String input = scanner1.nextLine();
+        boolean chips = input.equalsIgnoreCase("Y");
+
+        if (chips){
+           Order chips1 = new Order(1.50);
+           double chipsTotal = chips1.getTotal();
+            System.out.println("Chips added to your order. \n" + chipsTotal + " Extra added to your order.");
+        }
+        else {
+            System.out.println("No chips added.");
+        }
     }
 }
