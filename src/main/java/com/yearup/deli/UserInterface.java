@@ -20,6 +20,7 @@ public class UserInterface {
 
             case 1:
                 orderScreen();
+                break;
 
             default:
                 System.out.println("Invalid selection. ");
@@ -99,7 +100,14 @@ public class UserInterface {
         String cheeseString = scanner.nextLine();
         Cheese cheese = new Cheese(cheeseString, size, sandwich);
         sandwich.addTopping(cheese);
-        System.out.println(cheese.getPrice());
+        System.out.println("Would you like extra cheese? Y/N: ");
+        String extraCheeseChoice = scanner.nextLine();
+
+        if (extraCheeseChoice.equalsIgnoreCase("Y")) {
+            cheese.setExtra(true);
+        } else {
+            cheese.setExtra(false);
+        }
 
         System.out.println("Select your Regular toppings. The options are lettuce, peppers, onions, tomatoes, jalapenos, cucumbers, pickles, guacamole, mushrooms. ");
         System.out.println("Please enter your selection with commas in between Regular Toppings: ");
@@ -126,8 +134,6 @@ public class UserInterface {
         for (Topping topping : regularToppingsList) {
             sandwich.addTopping(topping);
         }
-
-        System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
 
 
         //Cheese cheese = new Cheese("American", size, sandwich);
