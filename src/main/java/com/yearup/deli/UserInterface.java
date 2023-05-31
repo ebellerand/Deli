@@ -100,7 +100,14 @@ public class UserInterface {
         String cheeseString = scanner.nextLine();
         Cheese cheese = new Cheese(cheeseString, size, sandwich);
         sandwich.addTopping(cheese);
-        System.out.println(cheese.getPrice());
+        System.out.println("Would you like extra cheese? Y/N: ");
+        String extraCheeseChoice = scanner.nextLine();
+
+        if (extraCheeseChoice.equalsIgnoreCase("Y")) {
+            cheese.setExtra(true);
+        } else {
+            cheese.setExtra(false);
+        }
 
         System.out.println("Select your Regular toppings. The options are lettuce, peppers, onions, tomatoes, jalapenos, cucumbers, pickles, guacamole, mushrooms. ");
         System.out.println("Please enter your selection with commas in between Regular Toppings: ");
@@ -113,18 +120,24 @@ public class UserInterface {
             Topping toppingObject = new Regular(topping.trim(), size, sandwich);
             regularToppingsList.add(toppingObject);
         }
+        System.out.println("Select your sauces. The options are mayo, mustard, ketchup,ranch, thousand island, vinaigrette");
+        System.out.println("Please enter your selection with commas in between sauces: ");
+        String sauceInput = scanner.nextLine();
+        String[] sauceArray = sauceInput.split(",");
 
-        System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
+        for (String sauce : sauceArray) {
+            Topping sauceObject = new Regular(sauce.trim() + " sauce", size, sandwich);
+            regularToppingsList.add(sauceObject);
+        }
+
+        // Add regular toppings and sauces to the sandwich
+        for (Topping topping : regularToppingsList) {
+            sandwich.addTopping(topping);
+        }
 
 
         //Cheese cheese = new Cheese("American", size, sandwich);
        // sandwich.addTopping(cheese);
-
-
-
-
-
-
 
 
     }
