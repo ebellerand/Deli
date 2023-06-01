@@ -96,19 +96,34 @@ public class UserInterface {
         scanner.nextLine();
         Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
         sandwich.sandwichSize = size;
-        System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
-        String meatString = scanner.nextLine();
-        Meat meat = new Meat(meatString, size, sandwich);
-        sandwich.addTopping(meat);
-        System.out.println("Would you like extra meat? Y/N: ");
-        String extraMeatChoice = scanner.nextLine();
 
-        if (extraMeatChoice.equalsIgnoreCase("Y")) {
-            meat.setExtra(true);
-        } else {
-            meat.setExtra(false);
+
+        List<Meat> meatToppings = new ArrayList<>();
+
+        while (true) {
+            System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon (or type 'done' to finish adding meat): ");
+            String meatString = scanner.nextLine();
+
+            if (meatString.equalsIgnoreCase("done")) {
+                break;
+            }
+
+            Meat meat = new Meat(meatString, size, sandwich);
+            sandwich.addTopping(meat);
+            meatToppings.add(meat);
+
+            System.out.println("Would you like extra meat? Y/N: ");
+            String extraMeatChoice = scanner.nextLine();
+
+            if (extraMeatChoice.equalsIgnoreCase("N")) {
+                meat.setExtra(false);
+                break;
+            } else if (extraMeatChoice.equalsIgnoreCase("Y")) {
+                meat.setExtra(true);
+            } else {
+                System.out.println("Invalid input. Please try again.");
+            }
         }
-
         System.out.println("Please select your cheese. The options are American, provolone, cheddar, and Swiss:  ");
         String cheeseString = scanner.nextLine();
         Cheese cheese = new Cheese(cheeseString, size, sandwich);
