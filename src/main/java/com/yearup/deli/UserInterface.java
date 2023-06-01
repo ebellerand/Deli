@@ -102,7 +102,6 @@ public class UserInterface {
         Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
         sandwich.sandwichSize = size;
 
-
         List<Meat> meatToppings = new ArrayList<>();
 
         while (true) {
@@ -167,6 +166,11 @@ public class UserInterface {
         for (Topping topping : regularToppingsList) {
             sandwich.addTopping(topping);
         }
+        System.out.println("Would you want your bread toasted? Y/N: ");
+        String toastedInput = scanner.nextLine();
+
+        boolean toasted = toastedInput.equalsIgnoreCase("Y");
+        sandwich.setToasted(toasted);
 
         System.out.println("The price of your sandwich is $" + sandwich.getPrice());
         System.out.println("Sandwich has been added to your order. ");
@@ -178,6 +182,8 @@ public class UserInterface {
 
         productList.add(sandwich);
         orderScreen();
+
+
 
 
     }
