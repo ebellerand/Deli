@@ -1,26 +1,33 @@
 package com.yearup.deli;
 
-public class Drink extends Product implements IPrice{
-    private int size;
+public class Drink extends Product {
+    private String size;
 
-    public Drink(String type, int size) {
+    public Drink(String type, String size) {
         super(type);
         this.size = size;
+        this.price = getSizePrice(size);
     }
 
-    public int getSize() {
+    public String getSize() {
         return size;
     }
-    @Override
-    public double getPrice(){
-        double price = 0.0;
-        if (size == 1){
-            price = 2.00;
-        } else if (size == 2) {
-            price = 2.50;
-        } else if (size == 3) {
-            price = 3.00;
 
-        } return price;
+    private double getSizePrice(String size) {
+        switch (size.toLowerCase()) {
+            case "small":
+                return 2.00;
+            case "medium":
+                return 2.50;
+            case "large":
+                return 3.00;
+            default:
+                return 0.00; // Invalid size, return a default price of 0.00
+        }
+    }
+
+    @Override
+    public double getPrice() {
+        return 0;
     }
 }
