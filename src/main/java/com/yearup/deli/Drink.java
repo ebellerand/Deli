@@ -13,7 +13,7 @@ public class Drink extends Product {
         return size;
     }
 
-    private double getSizePrice(String size) {
+    public double getSizePrice(String size) {
         switch (size.toLowerCase()) {
             case "small":
                 return 2.00;

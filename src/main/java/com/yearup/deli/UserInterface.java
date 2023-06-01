@@ -69,7 +69,7 @@ public class UserInterface {
                 break;
 
             case 2:
-                //addDrink()
+                addDrink();
                 break;
 
             case 3:
@@ -184,6 +184,19 @@ public class UserInterface {
         System.out.println("Chips added to your order. \n" + chipsTotal + " Extra added to your order.");
 
         productList.add(chips);
+    }
+
+    public void addDrink(){
+        scanner.nextLine();
+        System.out.println("What type of drink would you like? ");
+        String type = scanner.nextLine();
+        scanner.nextLine();
+        System.out.println("What size drink would you like?");
+        String size = scanner.nextLine();
+        Drink drink = new Drink(type, size);
+        productList.add(drink);
+
+        System.out.println(type + " has been added to your order for an extra $" + drink.getSizePrice(size));
     }
 
 }
