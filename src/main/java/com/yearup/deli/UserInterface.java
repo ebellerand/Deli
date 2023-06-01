@@ -95,6 +95,17 @@ public class UserInterface {
         Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
         sandwich.sandwichSize = size;
         System.out.println("Please select your meat. The options are steak, ham, salami, roast beef, chicken, and bacon. ");
+        String meatString = scanner.nextLine();
+        Meat meat = new Meat(meatString, size, sandwich);
+        sandwich.addTopping(meat);
+        System.out.println("Would you like extra meat? Y/N: ");
+        String extraMeatChoice = scanner.nextLine();
+
+        if (extraMeatChoice.equalsIgnoreCase("Y")) {
+            meat.setExtra(true);
+        } else {
+            meat.setExtra(false);
+        }
 
         System.out.println("Please select your cheese. The options are American, provolone, cheddar, and Swiss:  ");
         String cheeseString = scanner.nextLine();
@@ -134,6 +145,8 @@ public class UserInterface {
         for (Topping topping : regularToppingsList) {
             sandwich.addTopping(topping);
         }
+        System.out.println(sandwich);
+        System.out.println(sandwich.getPrice());
 
 
         //Cheese cheese = new Cheese("American", size, sandwich);
