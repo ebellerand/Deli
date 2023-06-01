@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
+    private List<Product> productList = new ArrayList<>();
+
 
     public void homeScreen() {
         System.out.println("Welcome to Delicious Sandwiches, where customizability is key and the customer is king.");
@@ -145,28 +147,28 @@ public class UserInterface {
         for (Topping topping : regularToppingsList) {
             sandwich.addTopping(topping);
         }
+
         System.out.println(sandwich);
         System.out.println(sandwich.getPrice());
 
+        Order order = new Order();
+        order.addProduct(sandwich);
+        order.getTotal();
 
-        //Cheese cheese = new Cheese("American", size, sandwich);
-       // sandwich.addTopping(cheese);
+
+        productList.add(sandwich);
 
 
     }
     public void addChips(){
-        Scanner scanner1 = new Scanner(System.in);
-        System.out.println("Would you like to add chips with your order for $1.50 extra? (Y/N): ");
-        String input = scanner1.nextLine();
-        boolean chips = input.equalsIgnoreCase("Y");
+        System.out.println("What type of chips would you like? ");
+        String type = scanner.nextLine();
+        Chips chips = new Chips(type);
 
-        if (chips){
-           Order chips1 = new Order(1.50);
-           double chipsTotal = chips1.getTotal();
-            System.out.println("Chips added to your order. \n" + chipsTotal + " Extra added to your order.");
-        }
-        else {
-            System.out.println("No chips added.");
-        }
+        double chipsTotal = chips.getPrice();
+        System.out.println("Chips added to your order. \n" + chipsTotal + " Extra added to your order.");
+
+        productList.add(chips);
     }
+
 }
