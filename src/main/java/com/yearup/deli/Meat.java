@@ -1,13 +1,10 @@
 package com.yearup.deli;
-
 public class Meat extends Topping {
     private boolean extra;
-
     public Meat(String type, int sandwichSize, Sandwich sandwich) {
         super(type, sandwichSize, sandwich);
         this.extra = false;
     }
-
     @Override
     public double getPrice() {
         double price = 0.0;
@@ -24,22 +21,17 @@ public class Meat extends Topping {
             default:
                 System.out.println("Invalid sandwich size.");
         }
-
         if (extra) {
             price += calculateExtraMeatPrice();
         }
-
         return price;
     }
-
     public boolean isExtra() {
         return extra;
     }
-
     public void setExtra(boolean extra) {
         this.extra = extra;
     }
-
     private double calculateExtraMeatPrice() {
         double extraMeatPrice = 0.0;
         switch (sandwichSize) {

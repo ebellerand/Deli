@@ -25,7 +25,7 @@ public class Cheese extends Topping {
                 break;
 
             default:
-                System.out.println("Invalid sandwich price. ");
+                System.out.println("Invalid input. ");
 
         }
         if (extra) {

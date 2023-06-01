@@ -53,8 +53,35 @@ public class Sandwich extends Product implements IPrice {
         this.toasted = toasted;
     }
 
-    @Override
+    public String toString() {
+        return "Sandwich{" +
+                "sandwichSize=" + sandwichSize +
+                ", breadType='" + breadType + '\'' +
+                ", toppings=" + toppings +
+                ", sauces=" + sauces +
+                ", toasted=" + toasted +
+                '}';
+
+
+    }
+
     public double getPrice() {
+        double price = 0.0;
+        switch (sandwichSize) {
+            case 4:
+                price += 5.50;
+                break;
+            case 8:
+                price += 7.00;
+                break;
+            case 12:
+                price += 8.50;
+                break;
+        }
+        for (Topping topping : toppings) {
+            price += topping.getPrice();
+
+        }
         return price;
     }
 }

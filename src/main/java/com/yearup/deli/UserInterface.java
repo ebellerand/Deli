@@ -97,6 +97,7 @@ public class UserInterface {
         Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
         sandwich.sandwichSize = size;
 
+
         List<Meat> meatToppings = new ArrayList<>();
 
         while (true) {
@@ -161,20 +162,16 @@ public class UserInterface {
         for (Topping topping : regularToppingsList) {
             sandwich.addTopping(topping);
         }
+
+        System.out.println(sandwich);
+        System.out.println(sandwich.getPrice());
+
         Order order = new Order();
         order.addProduct(sandwich);
         order.getTotal();
-        System.out.println(order.getTotal());
 
 
         productList.add(sandwich);
-
-
-
-
-        //Cheese cheese = new Cheese("American", size, sandwich);
-       // sandwich.addTopping(cheese);
-
 
 
     }
