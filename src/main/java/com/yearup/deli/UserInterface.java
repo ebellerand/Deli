@@ -84,6 +84,8 @@ public class UserInterface {
             case 0:
                 deleteOrder();
                 return;
+            default:
+                throw new IllegalStateException("Unexpected value: " + command);
         }
     }
 
@@ -222,8 +224,15 @@ public void checkout() {
 
 }
 public void deleteOrder(){
+
         productList.clear();
-    System.out.println("Your order has been deleted. ");
+        order.getProducts().clear();// Reset the order object
+        System.out.println("Your order has been deleted.");
+
+        //order.getProducts().clear();
+      //  order.setProducts();
+        //productList = new ArrayList<>();
+    //System.out.println("Your order has been deleted. ");
 }
 
 }

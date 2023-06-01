@@ -14,4 +14,11 @@ public abstract class Product implements IPrice {
     }
 
     public abstract double getPrice();
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "type='" + type + '\'' +
+                '}';
+    }
 }
