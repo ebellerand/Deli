@@ -224,7 +224,10 @@ public void checkout() {
     }
     System.out.println("Order Summary:");
     for (Product product : productList) {
-        System.out.println("- " + product.getClass().getSimpleName() + ": $" + product.getPrice());
+       /* if (product instanceof Drink) {
+            System.out.println(product.getType() + "; $ " + ((Drink) product).getSizePrice(((Drink) product).getSize()));
+        } */
+        System.out.println("- " + product.getClass().getSimpleName() + " " + product.getType()+ ": $" + product.getPrice());
     }
     double total = order.getTotal();
     System.out.println("Total: $" + total);
@@ -233,6 +236,9 @@ public void checkout() {
     scanner.nextLine();
     if (command.equalsIgnoreCase("y")) {
         System.out.println("Order confirmed. Thank you for your purchase!");
+        ReceiptFileManager receiptFileManager = new ReceiptFileManager();
+        String folderPath = System.getProperty("user.home") + "\\Desktop\\Receipts";
+        receiptFileManager.writeReceipt(folderPath, order);
         // Perform additional actions as needed (e.g., saving the order to a database)
         productList.clear(); // Clear the product list after checkout
     } else if (command.equalsIgnoreCase("n")) {

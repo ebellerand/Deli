@@ -28,7 +28,8 @@ public class Order implements IPrice{
                 total += products.get(i).getPrice();
             }
             if(products.get(i)instanceof Drink){
-                total += products.get(i).getPrice();
+                Drink drink = (Drink) products.get(i);
+                total += ((Drink) products.get(i)).getSizePrice(drink.getSize());
             }
             if(products.get(i)instanceof Chips){
                 total += products.get(i).getPrice();
@@ -44,6 +45,6 @@ public class Order implements IPrice{
 
     @Override
     public double getPrice() {
-        return getPrice();
+        return total;
     }
 }
