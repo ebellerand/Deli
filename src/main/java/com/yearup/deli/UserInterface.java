@@ -65,6 +65,7 @@ public class UserInterface {
         System.out.println("Please enter your selection: ");
         int command = scanner.nextInt();
 
+
         switch (command) {
             case 1:
                 addSandwich();
@@ -84,6 +85,8 @@ public class UserInterface {
             case 0:
                 deleteOrder();
                 return;
+            default:
+                throw new IllegalStateException("Unexpected value: " + command);
         }
     }
 
@@ -208,23 +211,64 @@ public class UserInterface {
         orderScreen();
     }
 public void checkout() {
-    System.out.println(order.getProducts());
-    System.out.println(order.getTotal());
-    System.out.println("Would you like to confirm your order? Y to confirm, N to delete order and return to the main menu: ");
+    if (productList.isEmpty()) {
+        System.out.println("Your order is empty.");
+        orderScreen();
+        return;
+    }
+    System.out.println("Order Summary:");
+    for (Product product : productList) {
+        System.out.println("- " + product.getClass().getSimpleName() + ": $" + product.getPrice());
+    }
+    double total = order.getTotal();
+    System.out.println("Total: $" + total);
+    System.out.println("Would you like to confirm your order? Y to confirm, N to delete the order and return to the main menu: ");
     String command = scanner.nextLine();
     scanner.nextLine();
     if (command.equalsIgnoreCase("y")) {
+        System.out.println("Order confirmed. Thank you for your purchase!");
+        // Perform additional actions as needed (e.g., saving the order to a database)
+        productList.clear(); // Clear the product list after checkout
+    } else if (command.equalsIgnoreCase("n")) {
+        deleteOrder();
+
+    } else {
+        System.out.println("Invalid selection.");
+        checkout();
+    }
+}
+
+
+
+
+
+
+
+
+    /*System.out.println(order.getProducts());
+    System.out.println(order.getTotal());
+    System.out.println("Would you like to confirm your order? Y to confirm, N to delete order and return to the main menu: ");
+    String command = scanner.nextLine();
+    scanner.next();
+    if (command.equalsIgnoreCase("y")) {
        // saveReceiptFile();
     }
-    else if (command.equalsIgnoreCase("n")) {
-         deleteOrder();
-    }
-
-}
-public void deleteOrder(){
+    if (command.equalsIgnoreCase("n")) {
+        order.getProducts().clear();
         productList.clear();
-        order.setProducts()
-    System.out.println("Your order has been deleted. ");
+        deleteOrder(); }*/
+
+public void deleteOrder(){
+
+        productList.clear();
+
+        order.getProducts().clear();// Reset the order object
+        System.out.println("Your order has been deleted.");
+
+        //order.getProducts().clear();
+      //  order.setProducts();
+        //productList = new ArrayList<>();
+    //System.out.println("Your order has been deleted. ");
 }
 
 }
