@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
     private List<Product> productList = new ArrayList<>();
+    Order order = new Order();
 
 
     public void homeScreen() {
@@ -21,6 +22,7 @@ public class UserInterface {
                 return;
 
             case 1:
+                Order order = new Order();
                 orderScreen();
                 break;
 
@@ -77,10 +79,10 @@ public class UserInterface {
                 break;
 
             case 4:
-                //checkout()
+                checkout();
                 break;
             case 0:
-                //deleteOrder()
+                deleteOrder();
                 return;
         }
     }
@@ -163,20 +165,22 @@ public class UserInterface {
             sandwich.addTopping(topping);
         }
 
-        System.out.println(sandwich);
-        System.out.println(sandwich.getPrice());
+        System.out.println("The price of your sandwich is $" + sandwich.getPrice());
+        System.out.println("Sandwich has been added to your order. ");
 
-        Order order = new Order();
+        //Order order = new Order();
         order.addProduct(sandwich);
         order.getTotal();
 
 
         productList.add(sandwich);
+        orderScreen();
 
 
     }
     public void addChips(){
         System.out.println("What type of chips would you like? ");
+        scanner.nextLine();
         String type = scanner.nextLine();
         Chips chips = new Chips(type);
 
@@ -184,6 +188,9 @@ public class UserInterface {
         System.out.println("Chips added to your order. \n" + chipsTotal + " Extra added to your order.");
 
         productList.add(chips);
+        order.addProduct(chips);
+        orderScreen();
+
     }
 
     public void addDrink(){
@@ -197,6 +204,26 @@ public class UserInterface {
         productList.add(drink);
 
         System.out.println(type + " has been added to your order for an extra $" + drink.getSizePrice(size));
+        order.addProduct(drink);
+        orderScreen();
     }
+public void checkout() {
+    System.out.println(order.getProducts());
+    System.out.println(order.getTotal());
+    System.out.println("Would you like to confirm your order? Y to confirm, N to delete order and return to the main menu: ");
+    String command = scanner.nextLine();
+    scanner.nextLine();
+    if (command.equalsIgnoreCase("y")) {
+       // saveReceiptFile();
+    }
+    else if (command.equalsIgnoreCase("n")) {
+         deleteOrder();
+    }
+
+}
+public void deleteOrder(){
+        productList.clear();
+    System.out.println("Your order has been deleted. ");
+}
 
 }
