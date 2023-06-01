@@ -13,7 +13,5 @@ public abstract class Product implements IPrice {
         return type;
     }
 
-    public double getPrice() {
-        return price;
-    }
+    public abstract double getPrice();
 }
