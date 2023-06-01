@@ -223,6 +223,7 @@ public void checkout() {
 }
 public void deleteOrder(){
         productList.clear();
+        order.setProducts()
     System.out.println("Your order has been deleted. ");
 }
 
