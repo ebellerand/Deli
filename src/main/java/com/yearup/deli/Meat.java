@@ -10,13 +10,13 @@ public class Meat extends Topping {
         double price = 0.0;
         switch (sandwichSize) {
             case 4:
-                price = 1.50;
+                price = 1.00;
                 break;
             case 8:
-                price = 2.50;
+                price = 2.00;
                 break;
             case 12:
-                price = 3.50;
+                price = 3.00;
                 break;
             default:
                 System.out.println("Invalid sandwich size.");
