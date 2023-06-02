@@ -51,15 +51,17 @@ public class UserInterface {
 
                 }
             } catch (Exception e) {
-                System.out.println("There was an error running the application. ");
+               // System.out.println("There was an error running the application. ");
             }
         }
         stop();
-    } public void stop(){
+    }
+
+    public void stop() {
         scanner.close();
     }
 
-    public void orderScreen(){
+    public void orderScreen() {
         System.out.println("1) Add Sandwich. 2) Add Drink. 3) Add Chips. 4) Checkout. 0) Cancel Order.");
         System.out.println("--------------------------------------------------------------------------");
         System.out.println("Please enter your selection: ");
@@ -99,7 +101,7 @@ public class UserInterface {
         System.out.println("Select your sandwich size, 4,8 or 12: ");
         int size = scanner.nextInt();
         scanner.nextLine();
-        Sandwich sandwich = new Sandwich("Sandwich", size, breadType ,false);
+        Sandwich sandwich = new Sandwich("Sandwich", size, breadType, false);
         sandwich.sandwichSize = size;
 
         List<Meat> meatToppings = new ArrayList<>();
@@ -184,10 +186,9 @@ public class UserInterface {
         orderScreen();
 
 
-
-
     }
-    public void addChips(){
+
+    public void addChips() {
         System.out.println("What type of chips would you like? (Lays, Doritos, Fritos, Cheetos) ");
         scanner.nextLine();
         String type = scanner.nextLine();
@@ -202,7 +203,7 @@ public class UserInterface {
 
     }
 
-    public void addDrink(){
+    public void addDrink() {
         scanner.nextLine();
         System.out.println("What type of drink would you like? (Pepsi, Sprite, Coke, Ginger Ale, Fanta )");
         String type = scanner.nextLine();
@@ -216,39 +217,51 @@ public class UserInterface {
         order.addProduct(drink);
         orderScreen();
     }
-public void checkout() {
-    if (productList.isEmpty()) {
-        System.out.println("Your order is empty.");
-        orderScreen();
-        return;
-    }
-    System.out.println("Order Summary:");
-    for (Product product : productList) {
-       /* if (product instanceof Drink) {
-            System.out.println(product.getType() + "; $ " + ((Drink) product).getSizePrice(((Drink) product).getSize()));
-        } */
-        System.out.println("- " + product.getClass().getSimpleName() + " " + product.getType()+ ": $" + product.getPrice());
-    }
-    double total = order.getTotal();
-    System.out.println("Total: $" + total);
-    System.out.println("Would you like to confirm your order? Y to confirm, N to delete the order and return to the main menu: ");
-    String command = scanner.nextLine();
-    scanner.nextLine();
-    if (command.equalsIgnoreCase("y")) {
-        System.out.println("Order confirmed. Thank you for your purchase!");
-        ReceiptFileManager receiptFileManager = new ReceiptFileManager();
-        String folderPath = System.getProperty("user.home") + "\\Desktop\\Receipts";
-        receiptFileManager.writeReceipt(folderPath, order);
-        // Perform additional actions as needed (e.g., saving the order to a database)
-        productList.clear(); // Clear the product list after checkout
-    } else if (command.equalsIgnoreCase("n")) {
-        deleteOrder();
 
-    } else {
-        System.out.println("Invalid selection.");
-        checkout();
+    public void checkout() {
+        if (productList.isEmpty()) {
+            System.out.println("Your order is empty.");
+            orderScreen();
+            return;
+        }
+        System.out.println("Order Summary:");
+        for (Product product : productList) {
+            if (product instanceof Sandwich) {
+                Sandwich sandwich = (Sandwich) product;
+                System.out.println(("- " + sandwich.getClass().getSimpleName() + " " + sandwich.getType() + ": $" + sandwich.getPrice() + "\n"));
+                System.out.println(("  Bread: " + sandwich.getBreadType() + "\n"));
+                for (Topping topping : sandwich.getToppings()) {
+                    if (topping instanceof Meat) {
+                        Meat meat = (Meat) topping;
+                        System.out.println(("  Meat: " + meat.getType() + "\n"));
+                    } else if (topping instanceof Cheese) {
+                        Cheese cheese = (Cheese) topping;
+                        System.out.println(("  Cheese: " + cheese.getType() + "\n"));
+                    }
+                }
+                //System.out.println("- " + product.getClass().getSimpleName() + " " + product.getType() + ": $" + product.getPrice());
+            }
+            double total = order.getTotal();
+            System.out.println("Total: $" + total);
+            System.out.println("Would you like to confirm your order? Y to confirm, N to delete the order and return to the main menu: ");
+            String command = scanner.nextLine();
+            scanner.nextLine();
+            if (command.equalsIgnoreCase("y")) {
+                System.out.println("Order confirmed. Thank you for your purchase!");
+                ReceiptFileManager receiptFileManager = new ReceiptFileManager();
+                String folderPath = System.getProperty("user.home") + "\\Desktop\\Receipts";
+                receiptFileManager.writeReceipt(folderPath, order);
+                // Perform additional actions as needed (e.g., saving the order to a database)
+                productList.clear(); // Clear the product list after checkout
+            } else if (command.equalsIgnoreCase("n")) {
+                deleteOrder();
+
+            } else {
+                System.out.println("Invalid selection.");
+                checkout();
+            }
+        }
     }
-}
 
 
 
@@ -270,18 +283,18 @@ public void checkout() {
         productList.clear();
         deleteOrder(); }*/
 
-public void deleteOrder(){
+        public void deleteOrder () {
 
-        productList.clear();
+            productList.clear();
 
-        order.getProducts().clear();// Reset the order object
-        System.out.println("Your order has been deleted.");
+            order.getProducts().clear();// Reset the order object
+            System.out.println("Your order has been deleted.");
 
-        //order.getProducts().clear();
-      //  order.setProducts();
-        //productList = new ArrayList<>();
-    //System.out.println("Your order has been deleted. ");
-}
+            //order.getProducts().clear();
+            //  order.setProducts();
+            //productList = new ArrayList<>();
+            //System.out.println("Your order has been deleted. ");
+        }
 
 
-}
+    }
