@@ -188,7 +188,7 @@ public class UserInterface {
 
     }
     public void addChips(){
-        System.out.println("What type of chips would you like? ");
+        System.out.println("What type of chips would you like? (Lays, Doritos, Fritos, Cheetos) ");
         scanner.nextLine();
         String type = scanner.nextLine();
         Chips chips = new Chips(type);
@@ -204,10 +204,10 @@ public class UserInterface {
 
     public void addDrink(){
         scanner.nextLine();
-        System.out.println("What type of drink would you like? ");
+        System.out.println("What type of drink would you like? (Pepsi, Sprite, Coke, Ginger Ale, Fanta )");
         String type = scanner.nextLine();
         scanner.nextLine();
-        System.out.println("What size drink would you like?");
+        System.out.println("What size drink would you like?(Small, Medium, Large) ");
         String size = scanner.nextLine();
         Drink drink = new Drink(type, size);
         productList.add(drink);
